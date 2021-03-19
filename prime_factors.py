@@ -2,7 +2,8 @@ import numpy as np
 import pandas as pd
 
 def prime_factors(number):
-    """ Returns a list of prime factors of a number. """
+    """ Returns a list of prime factors of an input number. """
+    
     prime_factors = []
     x = 333
     dividend = number
@@ -18,17 +19,14 @@ def prime_factors(number):
             else:
                 divisor += 1
                 
-def prime_dfdict(number):
-    num_prime_dict = {}
+def prime_df(number):
+    """ Returns a list of prime factors of a range of numbers from 2 to the input number. """
+
     num_prime_array = np.array(([2, 2, 1]))
 
-    
-    if number > 2: 
+    if number > 2:    
         for this_num in range(3, number+1):
             num_primes = prime_factors(this_num)
-    
-            #saving out everything to a dictionary:
-            num_prime_dict[this_num] = num_primes
     
             #saving out numbers' unique primes and their counts into a dataframe:
             if this_num > 1:
@@ -41,7 +39,7 @@ def prime_dfdict(number):
     else:
         num_prime_df = pd.DataFrame([num_prime_array], index=[0])
         
-    num_prime_df.columns = ['Numbers', 'Primes', 'Repeats']
+    num_prime_df.columns = ['Numbers', 'Primes', 'Powers']
     return num_prime_df
     
     
